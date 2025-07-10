@@ -1,0 +1,380 @@
+/* Estilos base */
+.document-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.document-list-edit-container {
+  display: flex;
+  gap: 16px;
+  max-width: 100%;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* Pestañas para el modo documentos-con-tipos */
+.document-tabs {
+  display: flex;
+  margin-bottom: -6px;
+  border-bottom: 1px solid var(--color-gray-light);
+  padding-left: 12px;
+}
+
+.document-tabs button {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-gray-medium);
+  transition: all 0.3s ease;
+  position: relative;
+  top: 1px;
+}
+
+.document-tabs button.active {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.document-tabs button:hover:not(.active) {
+  color: var(--primary-color);
+  background-color: var(--color-light-blue);
+}
+
+
+/* Lista de documentos */
+.document-list {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--color-gray-light);
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Items de documento */
+.document-item {
+  border: 1px solid var(--color-gray-light);
+  padding: 12px;
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+  color: var(--text-color);
+}
+
+.document-item.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+  background-color: var(--primary-color-hover);
+}
+
+/* Selector de tipos */
+.document-type-select {
+  width: 180px;
+  padding: 6px 8px;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.document-type-select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Input de nombre */
+.document-name-input {
+  flex: 1;
+  min-width: 120px;
+  padding: 6px 8px;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.document-name-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Indicador de requerido */
+.required-badge {
+  margin-left: 8px;
+  color: var(--color-danger);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Nombre de archivo */
+.document-filename {
+  flex: 1 1 auto;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+}
+
+/* Botones */
+.remove-button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-danger);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.remove-button:hover {
+  color: #a71d2a;
+}
+
+
+/* Área de subida */
+.document-upload-area {
+  flex: 0 0 180px;
+  height: 120px;
+  border: 2px dashed var(--primary-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+  background-color: var(--background-color);
+}
+
+
+.document-upload-area:hover,
+.document-upload-area:focus {
+  background-color: var(--primary-color-hover);
+  outline: none;
+}
+
+.document-upload-area span {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.drag-over {
+  background-color: var(--color-light-blue);
+}
+
+/* Previsualización */
+.document-preview-container {
+  flex: 0 0 40%;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+  background-color: var(--sidebar-color);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 12px;
+  box-sizing: border-box;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.document-preview-empty {
+  color: var(--color-gray-medium);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.document-preview-other {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-gray-medium);
+  font-weight: 600;
+}
+
+
+.document-preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.document-list-display {
+  display: flex;
+  gap: 16px;
+  max-width: 100%;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.document-list-display > .document-list {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.document-item-display {
+  border: 1px solid var(--color-gray-light);
+  padding: 12px;
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+}
+
+.document-item-display:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+  background-color: var(--primary-color-hover);
+}
+
+.document-item-display.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+  background-color: var(--primary-color-hover);
+}
+
+.document-name {
+  font-weight: 600;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+}
+
+.document-list-listmode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 100%;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 400px;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.document-list-listmode > .document-item-display {
+  border: 1px solid var(--color-gray-light);
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 12px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.document-name-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.document-name-link:hover,
+.document-name-link:focus {
+  text-decoration: underline;
+}
+
+.document-download-icon {
+  margin-left: 8px;
+}
+
+.document-item:focus, 
+.document-item-display:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  background-color: var(--color-light-blue);
+}
+
+.document-item.selected, 
+.document-item-display.selected {
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.document-item:focus:not(:focus-visible), 
+.document-item-display:focus:not(:focus-visible) {
+  outline: none;
+  background-color: transparent;
+}
+
+.document-item.missing-required {
+  border-left: 4px solid var(--color-danger);
+  animation: pulseWarning 1.5s infinite;
+}
+
+@keyframes pulseWarning {
+  0% { border-left-color: var(--color-danger); }
+  50% { border-left-color: #ffc8c8; }
+  100% { border-left-color: var(--color-danger); }
+}

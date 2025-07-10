@@ -1,0 +1,114 @@
+.floating-contact-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.floating-contact-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center main button and text */
+  width: 56px; /* Fix width to match button size */
+}
+
+.floating-contact-main-button {
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60x;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.floating-contact-main-button:hover {
+  background-color: var(--sidebar-color);
+}
+
+.floating-contact-main-text {
+  margin-top: 4px;
+  color: var(--primary-color);
+  font-size: var(--font-size-normal);
+  user-select: none;
+  font-family: var(--font-family-primary);
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+.floating-contact-options {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; /* Center buttons horizontally */
+  animation: fadeInScale 0.3s ease forwards;
+  animation-fill-mode: forwards;
+}
+
+.floating-contact-options.fade-out {
+  animation: fadeOutScale 0.3s ease forwards;
+}
+
+.floating-contact-option {
+  border: none;
+  border-radius: 50%;
+  width: 60px; /* Increased size */
+  height: 60px; /* Increased size */
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  transition: transform 0.2s ease;
+}
+
+.floating-contact-option:hover {
+  transform: scale(1.1);
+}
+
+.floating-contact-icon-wrapper {
+  width: 92%;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-contact-icon-wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOutScale {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
