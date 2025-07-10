@@ -24,7 +24,12 @@ const MangoTemplate = ({
   showNotifications = true,
   onUserChange = () => {}
 }) => {
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768; // Show sidebar by default on screens >= 768px (PC)
+    }
+    return true; // Default to true if window is undefined (SSR)
+  });
   const [profileDropdownVisible, setProfileDropdownVisible] = useState(false);
   const [user, setUser] = useState(auth.currentUser);
   const navigate = useNavigate();

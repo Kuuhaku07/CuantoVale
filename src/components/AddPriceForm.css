@@ -13,7 +13,7 @@
 
 .modal-content {
   background-color: var(--background-color);
-  padding: 20px;
+  padding: 1.25rem;
   border-radius: 8px;
   box-shadow: var(--button-box-shadow);
   width: 90%;
@@ -23,7 +23,7 @@
 
 .input-field {
   width: 100%;
-  padding: 8px;
+  padding: 0.5rem;
   border: 1px solid var(--color-gray-light);
   border-radius: 4px;
   font-size: 1rem;
