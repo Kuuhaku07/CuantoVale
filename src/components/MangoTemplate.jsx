@@ -35,7 +35,7 @@ const MangoTemplate = ({
       onUserChange(currentUser);
     });
     return () => unsubscribe();
-  }, []);
+  }, [onUserChange]);
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -135,10 +135,10 @@ const MangoTemplate = ({
                     <div className="profile-dropdown">
                       {user ? (
                         <>
-                          <a href="#" className="dropdown-item">
+                          <button className="dropdown-item" onClick={() => {}}>
                             <Icons.FiUser className="dropdown-icon" />
                             <span>Profile</span>
-                          </a>
+                          </button>
                           <button className="dropdown-item" onClick={handleLogout}>
                             <Icons.FiLogOut className="dropdown-icon" />
                             <span>Logout</span>
