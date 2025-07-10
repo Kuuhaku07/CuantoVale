@@ -74,10 +74,12 @@ const ProductList = ({ searchQuery, onSelectProduct }) => {
   if (loading) return <p>Cargando productos...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
-  // Filter products by searchQuery (case-insensitive)
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter products by searchQuery (case-insensitive), only if searchQuery length >= 3
+  const filteredProducts = searchQuery.length >= 3
+    ? products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : products;
 
   return (
     <div className="product-list-container">

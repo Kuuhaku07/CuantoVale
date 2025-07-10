@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDocs } from 'firebase/firestore';
 import { getApp } from 'firebase/app';
+import Autocomplete from './componentlist/AutoComplete/Autocomplete';
 import './AddPriceForm.css';
 
 const AddPriceForm = ({ productId, onClose, onPriceAdded }) => {
@@ -11,6 +12,28 @@ const AddPriceForm = ({ productId, onClose, onPriceAdded }) => {
   const [success, setSuccess] = useState(null);
 
   const db = getFirestore(getApp());
+
+  // Fetch options for autocomplete from distinct stores registered for the product
+  const fetchStoreOptions = async (input) => {
+    try {
+      const pricesCollection = collection(doc(collection(db, 'products'), productId), 'prices');
+      const pricesSnapshot = await getDocs(pricesCollection);
+
+      const storesSet = new Set();
+      pricesSnapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.store) {
+          storesSet.add(data.store);
+        }
+      });
+
+      const allStores = Array.from(storesSet).map((store, index) => ({ id: index.toString(), label: store }));
+
+      return allStores.filter(store => store.label.toLowerCase().includes(input.toLowerCase()));
+    } catch (error) {
+      return [];
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,13 +89,13 @@ const AddPriceForm = ({ productId, onClose, onPriceAdded }) => {
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label>Tienda (opcional):</label><br />
-            <input
-              type="text"
+            <Autocomplete
               value={store}
-              onChange={(e) => setStore(e.target.value)}
-              disabled={loading}
-              className="input-field"
+              onChange={setStore}
+              onSelect={(option) => setStore(option.label)}
+              fetchOptions={fetchStoreOptions}
               placeholder="Ejemplo: Supermercado XYZ"
+              disabled={loading}
             />
           </div>
           <button type="submit" disabled={loading} style={{ padding: '10px 20px' }}>
